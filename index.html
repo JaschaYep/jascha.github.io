@@ -4,246 +4,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Name — Personal Site</title>
+<title>Jascha Lennefer</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f7f3e9;
-    --ink: #20251e;
-    --accent: #e96a4b;
-    --card: #e9e4d8;
+body {
+  font-family: "Averia Serif Libre", serif;
+    background-color: var(--parchment);
+  background-image:
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(140, 95, 45, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 85% 75%,
+      rgba(140, 95, 45, 0.06),
+      transparent 50%
+    );
+}
+:root {
+  --parchment: #F0E2C0;
+  --ink: #38291F;
+  --vermilion: #9E3028;
+  --lapis: #254D83;
+  --gold: #B18A35;
+  --verdigris: #64734A;
+}
+
+  .title{
+  font-size:48px;
+  color: var(--vermilion);
+  margin-bottom: 12px;
   }
 
-  body.dark {
-    --bg: #20251e;
-    --ink: #f7f3e9;
-    --accent: #ff9678;
-    --card: #343a30;
-  }
+.page-content {
+  min-width: 0;
+  max-width: 65ch;
+}
 
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: Arial, Helvetica, sans-serif;
-    transition: background .25s, color .25s;
-  }
-
-  a { color: inherit; }
-
-  header, main, footer {
-    max-width: 1050px;
-    margin: auto;
-    padding: 24px;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
-
-  nav { display: flex; gap: 18px; }
-
-  nav a { text-decoration: none; }
-
-  button {
-    background: var(--ink);
-    color: var(--bg);
-    border: 0;
-    border-radius: 30px;
-    padding: 10px 15px;
-    cursor: pointer;
-  }
-
-  .intro {
-    padding: 90px 0 70px;
-  }
-
-  .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 12px;
-  }
-
-  h1 {
-    font-size: clamp(3.5rem, 11vw, 8rem);
-    line-height: .88;
-    letter-spacing: -.08em;
-    margin: 24px 0;
-    max-width: 850px;
-  }
-
-  h1 span { color: var(--accent); }
-
-  .intro p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    max-width: 480px;
-  }
-
-  section { padding: 35px 0; }
-
-  .section-title {
-    font-size: 1.8rem;
-    letter-spacing: -.05em;
-  }
+.body {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
 
   .projects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   }
+  .layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
 
-  .project {
-    background: var(--card);
-    padding: 24px;
-    min-height: 180px;
-    border-radius: 6px;
-    transition: transform .2s;
+.sidebar {
+  border-right: 2px solid var(--gold);
+  padding-right: 1.5rem;
+}
+
+.sidebar .title {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  display: block;
+  padding: 0.6rem 0.3rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(56, 41, 31, 0.2);
+}
+
+.sidebar a:hover {
+  color: var(--vermilion);
+  padding-left: 0.7rem;
+}
+
+@media (max-width: 650px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
   }
-
-  .project:hover { transform: translateY(-5px); }
-
-  .project h3 { font-size: 1.5rem; }
-
-  .project a { color: var(--accent); }
-
-  .about {
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-    padding: 35px 0;
-    font-size: 1.15rem;
-    line-height: 1.8;
-  }
-
-  footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding-top: 35px;
-    padding-bottom: 50px;
-  }
-
-  @media (max-width: 600px) {
-    header { flex-wrap: wrap; }
-    .intro { padding: 60px 0 40px; }
-    .projects { grid-template-columns: 1fr; }
-    nav { gap: 12px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      transition: none !important;
-    }
-  }
+}
 </style>
 </head>
 
 <body>
 <header>
-  <a href="#" aria-label="Home"><strong>YOUR NAME ✳</strong></a>
 
-  <nav aria-label="Main navigation">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Say hi</a>
-  </nav>
 
-  <button id="theme" aria-label="Toggle color theme">
-    ☼ / ☾
-  </button>
+
+
 </header>
 
-<main>
-  <section class="intro">
-    <div class="eyebrow">A little corner of the internet · 2026</div>
+  <main class="layout">
+    <aside class="sidebar">
+      <h1 class="title">Jascha Lennefer</h1>
 
-    <h1>
-      Hello, I'm<br>
-      <span>Your Name.</span>
-    </h1>
+      <nav aria-label="Navigation">
+        <ul>
+          <li><a href="about.html">About me</a></li>
+          <li><a href="projects.html">My projects</a></li>
 
-    <p>
-      I make things, collect ideas, and spend a
-      suspicious amount of time thinking about
-      the little details.
-    </p>
+        </ul>
+      </nav>
 
-    <p>Currently into: [your current obsession] ↗</p>
-  </section>
 
-  <section id="work">
-    <div class="eyebrow">01 — Things I've made</div>
-    <h2 class="section-title">A few favourite things.</h2>
 
-    <div class="projects">
-      <article class="project">
-        <div>✳ 01 / PROJECT</div>
-        <h3>My creative project</h3>
-        <p>A small description of something you made.</p>
-        <a href="#">Take a look ↗</a>
-      </article>
+    </aside>
 
-      <article class="project">
-        <div>☻ 02 / PLAYGROUND</div>
-        <h3>Things I find interesting</h3>
-        <p>A hobby, collection, experiment, or obsession.</p>
-        <a href="#">Explore ↗</a>
-      </article>
 
-      <article class="project">
-        <div>✎ 03 / WRITING</div>
-        <h3>Notes from my brain</h3>
-        <p>Thoughts, lists, links, and things worth sharing.</p>
-        <a href="#">Read more ↗</a>
-      </article>
+  <div class="page-content"> 
+    <p class="intro">This is my introductory paragraph! Blablabla!</p>
 
-      <article class="project">
-        <div>♡ 04 / ELSEWHERE</div>
-        <h3>Internet treasures</h3>
-        <p>Other places to find me around the web.</p>
-        <a href="#">Find me ↗</a>
-      </article>
-    </div>
-  </section>
+    <section class="body">
+      This is a body element. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </section>
 
-  <section id="about" class="about">
-    <div class="eyebrow">02 — A bit about me</div>
-    <p>
-      I'm [your name], a [what you do] based in [your city].
-      I like [interest one], [interest two], and making
-      things that feel a little different.
-    </p>
-    <p>
-      This website is my home on the internet.
-      It's a work in progress, just like me.
-    </p>
-  </section>
-
-  <section id="contact">
-    <div class="eyebrow">03 — The important bit</div>
-    <h2 class="section-title">Let's be internet friends.</h2>
-    <p><a href="mailto:hello@example.com">
-      Send me an email ↗
-    </a></p>
-  </section>
+    <section class="projects">
+      This is a project template. It should be in a grid layout.
+    </section>
+  </div>  
 </main>
 
 <footer>
-  <span>Made with curiosity ✳</span>
-  <span>© 2026 Your Name</span>
-  <a href="#">Back to top ↑</a>
+
 </footer>
 
 <script>
-  document.getElementById("theme").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
 </script>
 </body>
 </html>
